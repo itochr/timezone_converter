@@ -1,4 +1,5 @@
 #Written by Walter Downing (waltdowning)
+#receives a 2-letter state code and returns the time zone
 
 import socket
 
