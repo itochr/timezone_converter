@@ -29,8 +29,6 @@ while True:
         states_concat = str(start) + str(end)
         s.sendall(states_concat.encode())
         data2 = s.recv(1024).decode()
-        print(data2)
-        s.close()
 
     #Microservice C
     time = str(input("Please enter a time in 24hr format (HH:MM): "))
@@ -42,12 +40,11 @@ while True:
         s.sendall(time_concat.encode())
         data3 = s.recv(1024).decode()
     newtime = data3 + minute
-    print(newtime)
 
     #Microservice D
     data_concat = time + newtime + myMessage + message2
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
         s.connect((HOST, 7500))
-        s.sendall(time_concat.encode())
+        s.sendall(data_concat.encode())
         result = s.recv(1024).decode()
     print(result)
